@@ -1,0 +1,38 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+
+
+<div asp-validation-summary="All"></div>
+<div class="main-agileinfo">
+	<div class="agileits-top">
+		<form action="Login" method="post">
+
+			<input class="text email" placeholder="Email" asp-for="Email" required="">
+			<span class="text-danger" asp-validation-for="Email"></span>
+
+			<input class="text" placeholder="Password" asp-for="Password" required="">
+			<span class="text-danger" asp-validation-for="Password"></span>
+	
+			<div class="wthree-text">
+				<label class="anim">
+					<input class="checkbox" asp-for="RememberMe" required="">
+					<span>Remeber Me</span>
+				</label>
+				<div class="clear"> </div>
+			</div>
+
+		    <p><a asp-action="ForgetPassword">Forget Password?</a></p>
+
+			<input type="submit" value="Login" asp-action="Login">
+		</form>
+		<p>Don't have an Account? <a asp-action="Register"> Regiester Now!</a></p>
+	</div>
+</div>
+@section Validation {
+
+	<partial name="_ValidationScriptsPartial"></partial>
+}

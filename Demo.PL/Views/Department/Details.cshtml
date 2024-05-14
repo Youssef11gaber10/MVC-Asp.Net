@@ -1,0 +1,30 @@
+﻿@model Department //its map implicitly values like code ,name, dateof creation //if you remove will cause error
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Department @Model.Name Details</h1>
+
+
+    <div class="form-group">
+        <label class="col-form-label" asp-for="Code"></label>
+        <input readonly class="form-control" asp-for="Code" />
+    </div>
+
+    <div class="form-group">
+        <label class="col-form-label" asp-for="Name"></label>
+        <input readonly class="form-control" asp-for="Name" />
+
+    </div>
+
+    <div class="form-group">
+        <label class="col-form-label" asp-for="DateOfCreation"></label>
+        <input readonly class="form-control" asp-for="DateOfCreation" /> 
+    </div>
+
+  
+    <a class="btn btn-secondary" asp-route-id="@Model.Id"  asp-action="Edit">Edit</a> | 
+    <a class="btn btn-light" asp-controller="Department" asp-action="Index">Back to list</a>
+
+
+

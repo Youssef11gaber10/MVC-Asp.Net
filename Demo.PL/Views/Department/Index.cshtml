@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Department>//now i catch the data sended from controller in the property called model belong to view
+
+@{
+    // ViewData["Title"] = "Index";
+    ViewBag.Title = "All Departments";
+}
+
+@{
+
+    if (TempData["Message"] is not null)
+    {
+        <div id="MessageDiv" class=" alert alert-success"> @TempData["Message"]</div>
+    }
+
+
+    <h1 class="bg-body-tertiary rounded rounded-4">ALL Departments</h1>
+    <br />
+    <a class=" btn btn-success" asp-action="Create"> Create New Department</a>
+    @if (Model.Count() > 0)//@model(for initialize) == Model(this for using)
+    {
+        <table class="table table-striped table-hover mt-3">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(D => D.Code)</th>
+                    <th>@Html.DisplayNameFor(D => D.Name)</th>
+                    <th>@Html.DisplayNameFor(D => D.DateOfCreation)</th>
+
+                    <th>Details</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+
+
+            <tbody>
+                @foreach (var department in Model)
+                {
+
+                    <tr>
+                        <td>@department.Code</td>
+                        <td>@department.Name</td>
+                        <td>@department.DateOfCreation</td>
+
+                        <partial name="_ButtonsPartialview" model="@department.Id.ToString()" />
+                    </tr>
+                }
+
+            </tbody>
+
+
+        </table>
+
+
+    }
+    else
+    {
+        <div class=" mt-5 alert alert-warning">
+            <h2>There Is No Departments</h2>
+        </div>
+    }
+
+}
+
+

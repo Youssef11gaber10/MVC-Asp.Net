@@ -1,0 +1,38 @@
+﻿@model IEnumerable<UserInRoleViewModel>
+@{
+    ViewData["Title"] = "AddOrRemoveUsers";
+    var roleId = ViewData["roleId"] as string;
+}
+
+
+<form asp-action="AddOrRemoveUsers" asp-route-roleId="@roleId" method="post">
+    @{
+        foreach (var user in Model)
+        {
+            <div class="row justify-content-center align-items-center">
+                <div class="col-md-1">
+                    <input asp-for="@user.IsSelected" />
+                </div>
+                <div class="col-md-1">
+                    <label asp-for="@user.IsSelected">@user.UserName</label>
+                </div>
+            </div>
+
+                    <input hidden asp-for="@user.UserName" />
+                    <input hidden asp-for="@user.Id" />
+            
+        }
+    }
+
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-1">
+            <input value="Update" type="submit" class="btn btn-success" />
+        </div>
+        <div class="col-md-1">
+            <a asp-action="Edit" asp-route-Id="@roleId " class="btn btn-light">Cancel</a>
+        </div>
+    </div>
+
+
+</form>
+
